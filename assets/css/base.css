@@ -36,7 +36,8 @@
   --sp-3xl: 4rem;
   
   /* Typography */
-  --font-display: 'Orbitron', monospace;
+  --font-display: 'Bitcount Grid Single', monospace;
+  --font-heading: 'Bitcount Grid Single', monospace;
   --font-body: 'Noto Sans TC', sans-serif;
 }
 

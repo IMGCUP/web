@@ -47,7 +47,7 @@ async function init() {
         }
         
         // Update demo links
-        updateDemoLinks();
+        await updateDemoLinks();
         
         console.log('🚀 AI 客服專題網站已成功初始化');
         
@@ -379,11 +379,11 @@ async function loadEffects() {
 /**
  * Update all demo links to open modal
  */
-function updateDemoLinks() {
+async function updateDemoLinks() {
     if (!siteConfig?.project?.demoUrl) return;
     
-    // Load demo modal
-    loadDemoModal();
+    // Load demo modal and wait for it to complete
+    await loadDemoModal();
     
     // Update all demo links to open modal instead of direct link
     const demoLinks = document.querySelectorAll('[data-demo-link]');
@@ -461,6 +461,8 @@ function openDemoModal() {
     if (modal) {
         modal.classList.add('demo-modal--open');
         document.body.style.overflow = 'hidden';
+    } else {
+        console.warn('Demo modal 尚未載入完成，請稍候再試');
     }
 }
 
