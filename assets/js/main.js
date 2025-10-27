@@ -3,6 +3,171 @@
  * Handles initialization, data loading, and component registration
  */
 
+// ========================================
+// Preloader Manager
+// ========================================
+
+class PreloaderManager {
+    constructor(options = {}) {
+        this.minDuration = options.minDuration || 2000;
+        this.maxDuration = options.maxDuration || 3000;
+        this.sessionOnce = options.sessionOnce || false;
+        this.element = null;
+        this.startTime = null;
+        this.isShown = false;
+    }
+
+    /**
+     * 顯示 preloader overlay
+     */
+    show() {
+        // 檢查 sessionOnce
+        if (this.sessionOnce && sessionStorage.getItem('preloader_seen')) {
+            return false;
+        }
+
+        // 檢查 URL 參數
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('no-preloader') === '1') {
+            return false;
+        }
+
+        // 記錄開始時間
+        this.startTime = Date.now();
+
+        // 建立 preloader DOM
+        this.element = document.createElement('div');
+        this.element.className = 'preloader';
+        this.element.setAttribute('role', 'status');
+        this.element.setAttribute('aria-live', 'polite');
+        this.element.setAttribute('aria-label', '正在載入網站資源');
+        
+        this.element.innerHTML = `
+            <div class="preloader__backdrop"></div>
+            <div class="preloader__logo">AI康斯特</div>
+            <div class="preloader__subtitle">正在載入...</div>
+            <div class="preloader__progress">
+                <div class="preloader__progress-bar"></div>
+            </div>
+        `;
+
+        // 注入到 body 最前面
+        if (document.body) {
+            document.body.insertBefore(this.element, document.body.firstChild);
+        } else {
+            // 如果 body 還沒準備好，等待
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.insertBefore(this.element, document.body.firstChild);
+            });
+        }
+
+        // 套用 HTML 類別
+        document.documentElement.classList.add('is-preloading');
+
+        this.isShown = true;
+
+        // 標記 sessionStorage
+        if (this.sessionOnce) {
+            sessionStorage.setItem('preloader_seen', '1');
+        }
+
+        return true;
+    }
+
+    /**
+     * 等待關鍵資源載入
+     */
+    async waitForCritical() {
+        const promises = [];
+
+        // 1. 等待字型（限時 1000ms）
+        if (document.fonts) {
+            const fontPromise = Promise.race([
+                document.fonts.ready,
+                new Promise(resolve => setTimeout(resolve, 1000))
+            ]);
+            promises.push(fontPromise);
+        }
+
+        // 2. 等待標記為 data-preload 的圖片（如有）
+        const preloadImages = document.querySelectorAll('img[data-preload], [data-preload-bg]');
+        if (preloadImages.length > 0) {
+            const imagePromises = Array.from(preloadImages).map(img => {
+                return new Promise((resolve) => {
+                    if (img.complete) {
+                        resolve();
+                    } else {
+                        img.addEventListener('load', resolve);
+                        img.addEventListener('error', resolve);
+                        // 圖片逾時 800ms
+                        setTimeout(resolve, 800);
+                    }
+                });
+            });
+            promises.push(Promise.all(imagePromises));
+        }
+
+        // 3. 等待所有 Promise（但不超過 maxDuration）
+        try {
+            await Promise.race([
+                Promise.all(promises),
+                new Promise(resolve => setTimeout(resolve, this.maxDuration))
+            ]);
+        } catch (error) {
+            console.warn('部分資源載入失敗:', error);
+        }
+    }
+
+    /**
+     * 隱藏 preloader
+     */
+    hide() {
+        if (!this.isShown || !this.element) return;
+
+        // 計算已經顯示的時間
+        const elapsedTime = Date.now() - this.startTime;
+        const remainingTime = Math.max(0, this.minDuration - elapsedTime);
+
+        // 確保至少顯示 minDuration
+        setTimeout(() => {
+            this.element.classList.add('preloader--hidden');
+            document.documentElement.classList.remove('is-preloading');
+
+            // 400ms 後移除 DOM
+            setTimeout(() => {
+                if (this.element && this.element.parentNode) {
+                    this.element.parentNode.removeChild(this.element);
+                }
+                this.element = null;
+                this.isShown = false;
+            }, 400);
+        }, remainingTime);
+    }
+
+    /**
+     * 執行完整流程
+     */
+    async run() {
+        const shown = this.show();
+        if (!shown) {
+            return; // 被跳過或已顯示過
+        }
+
+        // 等待資源或達到最大時間
+        await this.waitForCritical();
+
+        // 隱藏（會自動處理最小顯示時間）
+        this.hide();
+    }
+}
+
+// 建立全域 preloader 實例
+const preloader = new PreloaderManager({
+    minDuration: 2000,
+    maxDuration: 3000,
+    sessionOnce: true
+});
+
 // Import components
 import { HeaderComponent } from './components/header.js';
 import { FooterComponent } from './components/footer.js';
@@ -51,8 +216,18 @@ async function init() {
         
         console.log('🚀 AI 客服專題網站已成功初始化');
         
+        // 初始化完成，通知 preloader 可以隱藏
+        // preloader 會自動處理最小顯示時間
+        if (preloader.isShown) {
+            preloader.hide();
+        }
+        
     } catch (error) {
         console.error('初始化失敗:', error);
+        // 即使初始化失敗也要隱藏 preloader
+        if (preloader.isShown) {
+            preloader.hide();
+        }
     }
 }
 
@@ -476,6 +651,14 @@ function closeDemoModal() {
         document.body.style.overflow = '';
     }
 }
+
+// 立即啟動 preloader（在 DOM 載入前）
+preloader.show();
+
+// 啟動資源等待（背景執行）
+preloader.waitForCritical().catch(err => {
+    console.warn('資源載入逾時或失敗:', err);
+});
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
