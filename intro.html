@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專題介紹 - AI 客服專題</title>
+    <meta name="description" content="深入了解 AI 客服系統的技術細節、實作方法與研究成果。">
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/themes.css">
+    
+    <!-- Main JavaScript Module -->
+    <script type="module" src="/assets/js/main.js"></script>
+</head>
+<body class="page">
+    <!-- Header Component -->
+    <header class="page__header">
+        <x-header></x-header>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="page__main">
+        <!-- Canvas for particle and 3D effects -->
+        <div class="canvas-container">
+            <canvas id="particles-canvas"></canvas>
+            <canvas id="three-canvas"></canvas>
+        </div>
+        
+        <section class="section">
+            <div class="container">
+                <div class="content content--wide">
+                    <div class="text-center mb-2xl">
+                        <h1 class="glitch" data-text="專題介紹">專題介紹</h1>
+                        <p class="text-dim">完整技術文件與研究報告</p>
+                    </div>
+                    
+                    <!-- PDF Container -->
+                    <div class="cyber-frame">
+                        <div id="intro-pdf-container" class="pdf-frame">
+                            <!-- PDF will be loaded here -->
+                            <iframe 
+                                id="intro-pdf"
+                                src="" 
+                                width="100%" 
+                                height="100%"
+                                frameborder="0"
+                                loading="lazy"
+                                title="專題介紹 PDF">
+                            </iframe>
+                            
+                            <!-- Fallback content (hidden by default) -->
+                            <div class="pdf-fallback hidden" id="intro-pdf-fallback">
+                                <div class="pdf-fallback__icon">📚</div>
+                                <h3>無法直接顯示文件</h3>
+                                <p class="pdf-fallback__message">
+                                    您的瀏覽器可能不支援內嵌 PDF 檢視。<br>
+                                    請點擊下方按鈕在新視窗查看文件：
+                                </p>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn--large btn--accent" id="intro-new-window" target="_blank">
+                                        新視窗開啟
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Document Sections Overview -->
+                    <div class="mt-2xl">
+                        <h2 class="text-center mb-xl">文件章節概覽</h2>
+                        
+                        <div class="grid grid--2 gap-lg">
+                            <div class="card glass reveal">
+                                <div class="card__header">
+                                    <h3 class="card__title">第一部分：背景與動機</h3>
+                                </div>
+                                <div class="card__body">
+                                    <p>探討傳統客服系統的挑戰與 AI 技術帶來的革新機會。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card glass reveal">
+                                <div class="card__header">
+                                    <h3 class="card__title">第二部分：系統設計</h3>
+                                </div>
+                                <div class="card__body">
+                                    <p>詳細說明系統架構、模組設計與技術選型。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card glass reveal">
+                                <div class="card__header">
+                                    <h3 class="card__title">第三部分：實作方法</h3>
+                                </div>
+                                <div class="card__body">
+                                    <p>深入介紹 NLP 模型訓練、對話管理與系統整合。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card glass reveal">
+                                <div class="card__header">
+                                    <h3 class="card__title">第四部分：成果評估</h3>
+                                </div>
+                                <div class="card__body">
+                                    <p>效能測試結果、使用者回饋與未來改進方向。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Key Technologies -->
+                    <div class="mt-2xl">
+                        <div class="card neon-border">
+                            <div class="card__header text-center">
+                                <h3 class="card__title">核心技術</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="grid grid--4 text-center">
+                                    <div>
+                                        <div class="badge badge--accent mb-sm">NLP</div>
+                                        <p class="text-dim">自然語言處理</p>
+                                    </div>
+                                    <div>
+                                        <div class="badge badge--success mb-sm">ML</div>
+                                        <p class="text-dim">機器學習</p>
+                                    </div>
+                                    <div>
+                                        <div class="badge badge--warning mb-sm">API</div>
+                                        <p class="text-dim">RESTful API</p>
+                                    </div>
+                                    <div>
+                                        <div class="badge badge--info mb-sm">DB</div>
+                                        <p class="text-dim">資料庫設計</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Component -->
+    <footer class="page__footer">
+        <x-footer></x-footer>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "project": {
+    "title": "AI 客服專題",
+    "tagline": "以 AI 強化客服體驗與效率",
+    "demoUrl": {
+      "frontend": "https://demo-frontend.example.com",
+      "backend": "https://demo-backend.example.com"
+    }
+  },
+  "assets": {
+    "slidesPdf": "/assets/slides/sample.pdf",
+    "introPdf": "/assets/intro/intro.pdf",
+    "posterImage": "/assets/poster/poster.png",
+    "posterPdf": "/assets/poster/poster.pdf"
+  },
+  "videos": [
+    { "title": "專題總覽 Demo", "youtubeId": "dQw4w9WgXcQ" },
+    { "title": "系統架構介紹", "youtubeId": "ScMzIvxBSi4" },
+    { "title": "使用案例展示", "youtubeId": "9bZkp7q19f0" }
+  ],
+  "effects": {
+    "particles": true,
+    "three": true,
+    "scrollReveal": true,
+    "breathingBorder": true
+  },
+  "navigation": [
+    { "label": "首頁", "href": "/index.html" },
+    { "label": "投影片", "href": "/slides.html" },
+    { "label": "影片", "href": "/videos.html" },
+    { "label": "海報", "href": "/poster.html" },
+    { "label": "介紹", "href": "/intro.html" }
+  ]
+}
