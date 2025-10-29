@@ -14,7 +14,7 @@ export class HeaderComponent extends HTMLElement {
         
         try {
             // Fetch the header partial
-            const response = await fetch('../../partials/header.html');
+            const response = await fetch('partials/header.html');
             if (!response.ok) throw new Error('Failed to load header');
             
             const html = await response.text();
