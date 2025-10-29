@@ -14,7 +14,7 @@ export class FooterComponent extends HTMLElement {
         
         try {
             // Fetch the footer partial
-            const response = await fetch('/partials/footer.html');
+            const response = await fetch('./partials/footer.html');
             if (!response.ok) throw new Error('Failed to load footer');
             
             const html = await response.text();
