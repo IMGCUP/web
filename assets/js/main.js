@@ -169,13 +169,13 @@ const preloader = new PreloaderManager({
 });
 
 // Import components
-import { HeaderComponent } from './components/header.js';
-import { FooterComponent } from './components/footer.js';
+import { HeaderComponent } from '/assets/js/components/header.js';
+import { FooterComponent } from '/assets/js/components/footer.js';
 
 // Import utilities
-import { loadSiteData, getQueryParam } from './utils/dom.js';
-import { detectPerformance, detectMotionPreference } from './utils/detect.js';
-import { initPDFFallback } from './utils/pdf-fallback.js';
+import { loadSiteData, getQueryParam } from '/assets/js/utils/dom.js';
+import { detectPerformance, detectMotionPreference } from '/assets/js/utils/detect.js';
+import { initPDFFallback } from '/assets/js/utils/pdf-fallback.js';
 
 // Import effects (lazy loaded based on config)
 let particlesModule = null;
@@ -510,7 +510,7 @@ async function loadEffects() {
     // Load particles effect
     if (siteConfig.effects.particles) {
         promises.push(
-            import('./effects/particles.js').then(module => {
+            import('/assets/js/effects/particles.js').then(module => {
                 particlesModule = module;
                 module.initParticles();
             })
@@ -520,7 +520,7 @@ async function loadEffects() {
     // Load 3D effect
     if (siteConfig.effects.three) {
         promises.push(
-            import('./effects/three-hero.js').then(module => {
+            import('/assets/js/effects/three-hero.js').then(module => {
                 threeModule = module;
                 module.initThreeHero();
             })
@@ -530,7 +530,7 @@ async function loadEffects() {
     // Load scroll reveal
     if (siteConfig.effects.scrollReveal) {
         promises.push(
-            import('./effects/scroll-reveal.js').then(module => {
+            import('/assets/js/effects/scroll-reveal.js').then(module => {
                 scrollModule = module;
                 module.initScrollReveal();
             })
@@ -540,7 +540,7 @@ async function loadEffects() {
     // Load breathing border effect
     if (siteConfig.effects.breathingBorder) {
         promises.push(
-            import('./effects/breathing-border.js').then(module => {
+            import('/assets/js/effects/breathing-border.js').then(module => {
                 breathingBorderModule = module;
                 module.initBreathingBorder({
                     showCorners: false,  // 不顯示角落裝飾
@@ -637,7 +637,7 @@ async function updateDemoLinks() {
  */
 async function loadDemoModal() {
     try {
-        const response = await fetch('./partials/demo-modal.html');
+        const response = await fetch('/partials/demo-modal.html');
         const html = await response.text();
         
         // Insert modal into body
