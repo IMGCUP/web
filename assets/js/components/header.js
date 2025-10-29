@@ -14,7 +14,7 @@ export class HeaderComponent extends HTMLElement {
         
         try {
             // Fetch the header partial
-            const response = await fetch('/partials/header.html');
+            const response = await fetch('../../partials/header.html');
             if (!response.ok) throw new Error('Failed to load header');
             
             const html = await response.text();
@@ -30,7 +30,7 @@ export class HeaderComponent extends HTMLElement {
             
         } catch (error) {
             console.error('Header loading error:', error);
-            this.innerHTML = '<div class="nav container"><a href="/" class="nav__brand">AI康斯特</a></div>';
+            this.innerHTML = '<div class="nav container"><a href="./index.html" class="nav__brand">AI康斯特</a></div>';
         }
     }
     

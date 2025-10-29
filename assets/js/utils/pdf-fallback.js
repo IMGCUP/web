@@ -3,7 +3,7 @@
  * Handles PDF embedding and provides fallback options
  */
 
-import { canEmbedPDF } from '/assets/js/utils/detect.js';
+import { canEmbedPDF } from './detect.js';
 
 /**
  * Initialize PDF fallback mechanism

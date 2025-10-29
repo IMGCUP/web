@@ -8,7 +8,7 @@
  */
 export async function loadSiteData() {
     try {
-        const response = await fetch('/data/site.json');
+        const response = await fetch('../../data/site.json');
         if (!response.ok) throw new Error('Failed to load site configuration');
         return await response.json();
     } catch (error) {
