@@ -8,10 +8,10 @@
     }
   },
   "assets": {
-    "slidesPdf": "./assets/slides/sample.pdf",
-    "introPdf": "./assets/intro/intro.pdf",
-    "posterImage": "./assets/poster/poster.png",
-    "posterPdf": "./assets/poster/poster.pdf"
+    "slidesPdf": "/web-reverse/assets/slides/sample.pdf",
+    "introPdf": "/web-reverse/assets/intro/intro.pdf",
+    "posterImage": "/web-reverse/assets/poster/poster.png",
+    "posterPdf": "/web-reverse/assets/poster/poster.pdf"
   },
   "videos": [
     { "title": "專題總覽 Demo", "youtubeId": "dQw4w9WgXcQ" },
@@ -25,10 +25,10 @@
     "breathingBorder": true
   },
   "navigation": [
-    { "label": "首頁", "href": "./index.html" },
-    { "label": "投影片", "href": "./slides.html" },
-    { "label": "影片", "href": "./videos.html" },
-    { "label": "海報", "href": "./poster.html" },
-    { "label": "介紹", "href": "./intro.html" }
+    { "label": "首頁", "href": "index.html" },
+    { "label": "投影片", "href": "slides.html" },
+    { "label": "影片", "href": "videos.html" },
+    { "label": "海報", "href": "poster.html" },
+    { "label": "介紹", "href": "intro.html" }
   ]
 }
