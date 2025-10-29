@@ -576,7 +576,7 @@ async function updateDemoLinks() {
  */
 async function loadDemoModal() {
     try {
-        const response = await fetch('/partials/demo-modal.html');
+        const response = await fetch('./partials/demo-modal.html');
         const html = await response.text();
         
         // Insert modal into body
