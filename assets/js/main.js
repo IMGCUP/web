@@ -312,23 +312,17 @@ function setupNavigation() {
 function initPageFeatures() {
     const path = window.location.pathname;
     
-    switch(path) {
-        case '/':
-        case '/index.html':
-            initHomePage();
-            break;
-        case '/slides.html':
-            initSlidesPage();
-            break;
-        case '/videos.html':
-            initVideosPage();
-            break;
-        case '/poster.html':
-            initPosterPage();
-            break;
-        case '/intro.html':
-            initIntroPage();
-            break;
+    // Support subpath deployment (e.g., /web-reverse/videos.html)
+    if (path === '/' || path.endsWith('/index.html') || path.endsWith('/')) {
+        initHomePage();
+    } else if (path.endsWith('/slides.html')) {
+        initSlidesPage();
+    } else if (path.endsWith('/videos.html')) {
+        initVideosPage();
+    } else if (path.endsWith('/poster.html')) {
+        initPosterPage();
+    } else if (path.endsWith('/intro.html')) {
+        initIntroPage();
     }
 }
 
