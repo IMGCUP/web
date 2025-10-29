@@ -963,13 +963,1049 @@ html.is-preloading body {
   color: var(--tx-0);
 }
 
+/* Poster Page Specific Styles */
+
+/* 在海報頁面降低呼吸燈效果的強度 */
+body:has(.poster-frame) .breathing-border {
+  opacity: 0.2 !important;
+}
+
+body:has(.poster-frame) .breathing-border::before,
+body:has(.poster-frame) .breathing-border::after {
+  opacity: 0.3 !important;
+}
+
+.poster-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-lg);
+}
+
+.poster-frame {
+  background: rgba(11, 15, 20, 0.8);
+  border: 2px solid rgba(0, 229, 255, 0.3);
+  border-radius: 8px;
+  padding: var(--sp-xl);
+  box-shadow: 
+    0 0 30px rgba(0, 229, 255, 0.15),
+    inset 0 0 30px rgba(0, 229, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.poster-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent,
+    var(--c-primary) 50%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+/* 上下橫向電路線 */
+.poster-circuit-line {
+  position: absolute;
+  left: calc(var(--sp-sm) + 5px);
+  right: calc(var(--sp-sm) + 5px);
+  height: 1px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--c-primary) 5%,
+    transparent 12%,
+    var(--c-accent) 25%,
+    transparent 35%,
+    var(--c-primary) 50%,
+    transparent 65%,
+    var(--c-accent) 75%,
+    transparent 88%,
+    var(--c-primary) 95%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  opacity: 0.6;
+  animation: circuit-flow 4s linear infinite;
+}
+
+@keyframes circuit-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+.poster-circuit-line--top {
+  top: calc(var(--sp-md) - 2px);
+}
+
+.poster-circuit-line--bottom {
+  bottom: calc(var(--sp-md) - 2px);
+  animation-direction: reverse;
+}
+
+/* 四個角落的電路連接點 */
+.circuit-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.circuit-corner::before,
+.circuit-corner::after {
+  content: '';
+  position: absolute;
+  background: var(--c-primary);
+  opacity: 0.6;
+}
+
+/* 左上角 */
+.circuit-corner--tl {
+  top: calc(var(--sp-md) - 2px);
+  left: calc(var(--sp-sm) + 5px);
+  transform: translate(-50%, -50%);
+}
+
+.circuit-corner--tl::before {
+  width: 1px;
+  height: 8px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.circuit-corner--tl::after {
+  width: 8px;
+  height: 1px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 右上角 */
+.circuit-corner--tr {
+  top: calc(var(--sp-md) - 2px);
+  right: calc(var(--sp-sm) + 5px);
+  transform: translate(50%, -50%);
+}
+
+.circuit-corner--tr::before {
+  width: 1px;
+  height: 8px;
+  top: 0;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.circuit-corner--tr::after {
+  width: 8px;
+  height: 1px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 左下角 */
+.circuit-corner--bl {
+  bottom: calc(var(--sp-md) - 2px);
+  left: calc(var(--sp-sm) + 5px);
+  transform: translate(-50%, 50%);
+}
+
+.circuit-corner--bl::before {
+  width: 1px;
+  height: 8px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.circuit-corner--bl::after {
+  width: 8px;
+  height: 1px;
+  left: 0;
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
+/* 右下角 */
+.circuit-corner--br {
+  bottom: calc(var(--sp-md) - 2px);
+  right: calc(var(--sp-sm) + 5px);
+  transform: translate(50%, 50%);
+}
+
+.circuit-corner--br::before {
+  width: 1px;
+  height: 8px;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.circuit-corner--br::after {
+  width: 8px;
+  height: 1px;
+  right: 0;
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
+/* 角落連接點閃爍效果 */
+.circuit-corner {
+  animation: corner-glow 2s ease-in-out infinite;
+}
+
+.circuit-corner--tl {
+  animation-delay: 0s;
+}
+
+.circuit-corner--tr {
+  animation-delay: 0.5s;
+}
+
+.circuit-corner--br {
+  animation-delay: 1s;
+}
+
+.circuit-corner--bl {
+  animation-delay: 1.5s;
+}
+
+@keyframes corner-glow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px var(--c-primary));
+  }
+}
+
+/* 海報框內側裝飾（重新設計） */
+.poster-inner-deco {
+  position: absolute;
+  top: var(--sp-md);
+  bottom: var(--sp-md);
+  width: 80px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.poster-inner-deco--left {
+  left: var(--sp-sm);
+}
+
+.poster-inner-deco--right {
+  right: var(--sp-sm);
+}
+
+/* 背景網格 */
+.inner-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 9px, rgba(0, 229, 255, 0.1) 9px, rgba(0, 229, 255, 0.1) 10px),
+    repeating-linear-gradient(90deg, transparent, transparent 9px, rgba(0, 229, 255, 0.1) 9px, rgba(0, 229, 255, 0.1) 10px);
+  opacity: 0.3;
+}
+
+/* 掃描條 */
+.inner-scan-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent,
+    var(--c-primary),
+    transparent
+  );
+  box-shadow: 0 0 10px var(--c-primary);
+  animation: inner-scan 4s ease-in-out infinite;
+}
+
+@keyframes inner-scan {
+  0%, 100% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.8;
+  }
+  50% {
+    top: 100%;
+    opacity: 0;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* 六角形裝飾 */
+.inner-hex {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 35px;
+  background: transparent;
+  border: 1px solid var(--c-primary);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  opacity: 0.4;
+  animation: inner-hex-pulse 3s ease-in-out infinite;
+}
+
+.inner-hex--1 {
+  top: 15%;
+  animation-delay: 0s;
+}
+
+.inner-hex--2 {
+  top: 45%;
+  animation-delay: 1s;
+}
+
+.inner-hex--3 {
+  top: 75%;
+  animation-delay: 2s;
+}
+
+@keyframes inner-hex-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 15px var(--c-primary);
+  }
+}
+
+/* 數據條 */
+.inner-data-bar {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 4px;
+  background: rgba(0, 229, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.inner-data-bar--1 {
+  top: 25%;
+}
+
+.inner-data-bar--2 {
+  top: 50%;
+}
+
+.inner-data-bar--3 {
+  top: 75%;
+}
+
+.inner-data-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--c-primary),
+    var(--c-accent)
+  );
+  box-shadow: 0 0 8px var(--c-primary);
+  animation: inner-data-load 3s ease-in-out infinite;
+}
+
+/* 右側數據條從右向左填充 */
+.poster-inner-deco--right .inner-data-fill {
+  margin-left: auto;
+  background: linear-gradient(270deg, 
+    var(--c-primary),
+    var(--c-accent)
+  );
+}
+
+.inner-data-bar--1 .inner-data-fill {
+  animation-delay: 0s;
+}
+
+.inner-data-bar--2 .inner-data-fill {
+  animation-delay: 0.5s;
+}
+
+.inner-data-bar--3 .inner-data-fill {
+  animation-delay: 1s;
+}
+
+@keyframes inner-data-load {
+  0%, 100% {
+    width: 30%;
+  }
+  50% {
+    width: 90%;
+  }
+}
+
+/* 電路線條 */
+.inner-circuit {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 5px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--c-primary) 10%,
+    transparent 20%,
+    var(--c-accent) 40%,
+    transparent 50%,
+    var(--c-primary) 70%,
+    transparent 80%,
+    var(--c-accent) 90%,
+    transparent 100%
+  );
+  opacity: 0.5;
+}
+
+/* 右側電路線條翻轉到右邊 */
+.poster-inner-deco--right .inner-circuit {
+  left: auto;
+  right: 5px;
+}
+
+/* 文字標籤 */
+.inner-text {
+  position: absolute;
+  right: 5px;
+  font-family: monospace;
+  font-size: 0.6rem;
+  color: var(--c-primary);
+  opacity: 0.6;
+  letter-spacing: 1px;
+  animation: inner-text-blink 2s ease-in-out infinite;
+}
+
+/* 右側文字翻轉到左邊 */
+.poster-inner-deco--right .inner-text {
+  right: auto;
+  left: 5px;
+}
+
+.inner-text:nth-child(10) {
+  top: 20%;
+  animation-delay: 0s;
+}
+
+.inner-text:nth-child(11) {
+  top: 50%;
+  animation-delay: 0.7s;
+}
+
+.inner-text:nth-child(12) {
+  top: 80%;
+  animation-delay: 1.4s;
+}
+
+@keyframes inner-text-blink {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* 頁面兩側科技裝飾（通用） */
+.side-deco {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: 80vh;
+  max-height: 800px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: side-deco-entrance 1s ease-out forwards;
+}
+
+/* 延遲顯示的裝飾（首頁專用） */
+.side-deco--delayed {
+  opacity: 0;
+  pointer-events: none;
+  animation: none !important;
+}
+
+.side-deco--delayed.side-deco--left {
+  transform: translateY(-50%) translateX(-50px);
+}
+
+.side-deco--delayed.side-deco--right {
+  transform: translateY(-50%) translateX(50px);
+}
+
+/* 延遲裝飾的內部元素初始不動畫 */
+.side-deco--delayed:not(.is-visible) .poster-scan-line,
+.side-deco--delayed:not(.is-visible) .poster-data-block,
+.side-deco--delayed:not(.is-visible) .poster-tech-ring,
+.side-deco--delayed:not(.is-visible) .poster-corner-dot {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* 當觸發時顯示容器動畫 */
+.side-deco--delayed.is-visible.side-deco--left {
+  animation: side-deco-entrance-left 1s ease-out forwards !important;
+}
+
+.side-deco--delayed.is-visible.side-deco--right {
+  animation: side-deco-entrance-right 1s ease-out forwards !important;
+  animation-delay: 0.2s;
+}
+
+/* 當觸發時恢復內部元素動畫 */
+.side-deco--delayed.is-visible .poster-scan-line {
+  animation: 
+    scan-line-entrance 0.8s ease-out 0.3s forwards,
+    scan-move 4s ease-in-out 1.1s infinite !important;
+}
+
+.side-deco--delayed.is-visible .poster-data-block {
+  animation: 
+    data-block-entrance 0.6s ease-out forwards,
+    data-fade 3s ease-in-out infinite !important;
+}
+
+.side-deco--delayed.is-visible .poster-tech-ring {
+  animation: 
+    ring-entrance 0.8s ease-out forwards,
+    ring-pulse 3s ease-in-out infinite !important;
+}
+
+.side-deco--delayed.is-visible .poster-corner-dot {
+  animation: 
+    dot-entrance 0.4s ease-out forwards,
+    dot-blink 2s ease-in-out infinite !important;
+}
+
+.side-deco--left {
+  left: 20px;
+  animation-name: side-deco-entrance-left;
+}
+
+.side-deco--right {
+  right: 20px;
+  animation-name: side-deco-entrance-right;
+  animation-delay: 0.2s;
+}
+
+/* 左側進場動畫 */
+@keyframes side-deco-entrance-left {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* 右側進場動畫 */
+@keyframes side-deco-entrance-right {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* 保持向後兼容的 poster 類名 */
+.poster-side-deco {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: 80vh;
+  max-height: 800px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: side-deco-entrance 1s ease-out forwards;
+}
+
+.poster-side-deco--left {
+  left: 20px;
+  animation-name: side-deco-entrance-left;
+}
+
+.poster-side-deco--right {
+  right: 20px;
+  animation-name: side-deco-entrance-right;
+  animation-delay: 0.2s;
+}
+
+/* 垂直掃描線 */
+.poster-scan-line {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--c-primary) 30%,
+    var(--c-accent) 50%,
+    var(--c-primary) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  animation: 
+    scan-line-entrance 0.8s ease-out 0.3s forwards,
+    scan-move 4s ease-in-out 1.1s infinite;
+}
+
+@keyframes scan-line-entrance {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scaleY(1);
+  }
+}
+
+.poster-side-deco--left .poster-scan-line,
+.side-deco--left .poster-scan-line {
+  left: 50%;
+}
+
+.poster-side-deco--right .poster-scan-line,
+.side-deco--right .poster-scan-line {
+  right: 50%;
+  animation-delay: 2s;
+}
+
+@keyframes scan-move {
+  0%, 100% {
+    transform: translateY(-30%);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(30%);
+    opacity: 0.6;
+  }
+}
+
+/* 科技數據塊 */
+.poster-data-block {
+  position: absolute;
+  width: 80px;
+  padding: var(--sp-xs);
+  background: rgba(0, 229, 255, 0.05);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 2px;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--c-primary);
+  opacity: 0;
+  animation: 
+    data-block-entrance 0.6s ease-out forwards,
+    data-fade 3s ease-in-out infinite;
+}
+
+@keyframes data-block-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateX(0);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1) translateX(0);
+  }
+}
+
+.poster-data-block:nth-child(2) {
+  top: 15%;
+  animation-delay: 0.4s, 1.4s;
+}
+
+.poster-data-block:nth-child(3) {
+  top: 35%;
+  animation-delay: 0.5s, 1.5s;
+}
+
+.poster-data-block:nth-child(4) {
+  top: 55%;
+  animation-delay: 0.6s, 1.6s;
+}
+
+.poster-data-block:nth-child(5) {
+  top: 75%;
+  animation-delay: 0.7s, 1.7s;
+}
+
+@keyframes data-fade {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-5px);
+  }
+}
+
+.poster-side-deco--right .poster-data-block,
+.side-deco--right .poster-data-block {
+  animation-name: data-fade-right;
+}
+
+@keyframes data-fade-right {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(5px);
+  }
+}
+
+/* 科技圓環 */
+.poster-tech-ring {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(0, 229, 255, 0.3);
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: 
+    ring-entrance 0.8s ease-out forwards,
+    ring-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ring-entrance {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.poster-tech-ring:nth-child(6) {
+  top: 10%;
+  animation-delay: 0.8s, 1.8s;
+}
+
+.poster-tech-ring:nth-child(7) {
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  border-color: rgba(255, 45, 149, 0.3);
+  animation-delay: 0.9s, 2.9s;
+}
+
+.poster-tech-ring:nth-child(8) {
+  bottom: 10%;
+  animation-delay: 1s, 3s;
+}
+
+@keyframes ring-pulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* 角落裝飾點 */
+.poster-corner-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--c-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--c-primary);
+  opacity: 0;
+  animation: 
+    dot-entrance 0.4s ease-out forwards,
+    dot-blink 2s ease-in-out infinite;
+}
+
+@keyframes dot-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+.poster-corner-dot:nth-child(9) {
+  top: 5%;
+  left: 20%;
+  animation-delay: 1.1s, 2.1s;
+}
+
+.poster-corner-dot:nth-child(10) {
+  top: 25%;
+  left: 80%;
+  animation-delay: 1.2s, 2.7s;
+}
+
+.poster-corner-dot:nth-child(11) {
+  bottom: 25%;
+  left: 15%;
+  animation-delay: 1.3s, 3.3s;
+}
+
+.poster-corner-dot:nth-child(12) {
+  bottom: 5%;
+  left: 85%;
+  animation-delay: 1.4s, 3.9s;
+}
+
+@keyframes dot-blink {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+/* Reduced Motion 支援 */
+@media (prefers-reduced-motion: reduce) {
+  .side-deco,
+  .poster-side-deco {
+    animation: none !important;
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+  
+  .side-deco--delayed {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+  
+  .side-deco--delayed.side-deco--left {
+    transform: translateY(-50%);
+  }
+  
+  .side-deco--delayed.side-deco--right {
+    transform: translateY(-50%);
+  }
+  
+  .poster-scan-line,
+  .poster-data-block,
+  .poster-tech-ring,
+  .poster-corner-dot {
+    animation: none !important;
+  }
+  
+  .side-deco--delayed .poster-scan-line {
+    opacity: 0.3;
+  }
+  
+  .side-deco--delayed .poster-data-block {
+    opacity: 0.5;
+  }
+  
+  .side-deco--delayed .poster-tech-ring {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  
+  .side-deco--delayed .poster-corner-dot {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  
+  .poster-scan-line {
+    opacity: 0.3;
+  }
+  
+  .poster-data-block {
+    opacity: 0.5;
+  }
+  
+  .poster-tech-ring {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  
+  .poster-corner-dot {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  
+  /* 海報框內裝飾 */
+  .inner-scan-bar,
+  .inner-hex,
+  .inner-data-fill,
+  .inner-text {
+    animation: none !important;
+  }
+  
+  .inner-scan-bar {
+    opacity: 0.5;
+    top: 50%;
+  }
+  
+  .inner-hex {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  
+  .inner-data-fill {
+    width: 70%;
+  }
+  
+  .inner-text {
+    opacity: 0.5;
+  }
+  
+  /* 上下電路線 */
+  .poster-circuit-line {
+    opacity: 0.4;
+    animation: none !important;
+    background-position: 0% 0%;
+  }
+  
+  /* 角落連接點 */
+  .circuit-corner {
+    animation: none !important;
+    opacity: 0.6;
+    filter: none;
+  }
+}
+
 /* Poster Image */
 .poster-image {
   max-width: 100%;
   height: auto;
-  border: 1px solid var(--c-primary);
-  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.1);
+  display: block;
+  margin: 0 auto;
   border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Poster Page Mobile Responsive */
+@media (max-width: 768px) {
+  .poster-container {
+    padding: var(--sp-lg) var(--sp-sm);
+  }
+  
+  .poster-frame {
+    padding: var(--sp-md);
+    border-width: 1px;
+  }
+  
+  .poster-image {
+    border-radius: 2px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* 手機版隱藏所有邊框特效 */
+  .poster-circuit-line,
+  .circuit-corner,
+  .poster-inner-deco {
+    display: none !important;
+  }
+  
+  /* 手機版隱藏全站側邊裝飾 */
+  .side-deco,
+  .poster-side-deco {
+    display: none !important;
+  }
+}
+
+/* 平板尺寸調整 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .side-deco,
+  .poster-side-deco {
+    width: 100px;
+  }
+  
+  .side-deco--left,
+  .poster-side-deco--left {
+    left: 10px;
+  }
+  
+  .side-deco--right,
+  .poster-side-deco--right {
+    right: 10px;
+  }
+}
+
+/* 超大屏幕優化 */
+@media (min-width: 1400px) {
+  .side-deco,
+  .poster-side-deco {
+    width: 150px;
+  }
+  
+  .side-deco--left,
+  .poster-side-deco--left {
+    left: 40px;
+  }
+  
+  .side-deco--right,
+  .poster-side-deco--right {
+    right: 40px;
+  }
+  
+  .poster-data-block {
+    width: 100px;
+    font-size: 0.75rem;
+  }
+  
+  .poster-tech-ring {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .poster-tech-ring:nth-child(7) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 /* List Utilities */

@@ -36,18 +36,105 @@
             <canvas id="three-canvas"></canvas>
         </div>
         
+        <!-- Poster Side Decorations -->
+        <div class="poster-side-deco poster-side-deco--left">
+            <div class="poster-scan-line"></div>
+            <div class="poster-data-block">SYS_01<br>ACTIVE</div>
+            <div class="poster-data-block">AI_CORE<br>ONLINE</div>
+            <div class="poster-data-block">DATA_OK<br>100%</div>
+            <div class="poster-data-block">SYNC_ON<br>READY</div>
+            <div class="poster-tech-ring"></div>
+            <div class="poster-tech-ring"></div>
+            <div class="poster-tech-ring"></div>
+            <div class="poster-corner-dot"></div>
+            <div class="poster-corner-dot"></div>
+            <div class="poster-corner-dot"></div>
+            <div class="poster-corner-dot"></div>
+        </div>
+        
+        <div class="poster-side-deco poster-side-deco--right">
+            <div class="poster-scan-line"></div>
+            <div class="poster-data-block">NET_OK<br>STABLE</div>
+            <div class="poster-data-block">CPU_95<br>NORMAL</div>
+            <div class="poster-data-block">MEM_OK<br>ALLOC</div>
+            <div class="poster-data-block">INIT_OK<br>DONE</div>
+            <div class="poster-tech-ring"></div>
+            <div class="poster-tech-ring"></div>
+            <div class="poster-tech-ring"></div>
+            <div class="poster-corner-dot"></div>
+            <div class="poster-corner-dot"></div>
+            <div class="poster-corner-dot"></div>
+            <div class="poster-corner-dot"></div>
+        </div>
+        
         <section class="section">
             <div class="container">
                 <div class="content content--wide">
-                    <div class="text-center mb-2xl">
+                    <div class="text-center mb-xl">
                         <h1 class="glitch" data-text="專題海報">專題海報</h1>
                         <p class="text-dim">視覺化呈現專題成果與系統架構</p>
                     </div>
                     
                     <!-- Poster Display Area -->
-                    <div class="cyber-frame">
+                    <div class="poster-frame">
+                        <!-- 頂部電路線 -->
+                        <div class="poster-circuit-line poster-circuit-line--top"></div>
+                        
+                        <!-- 底部電路線 -->
+                        <div class="poster-circuit-line poster-circuit-line--bottom"></div>
+                        
+                        <!-- 四個角落的連接點 -->
+                        <div class="circuit-corner circuit-corner--tl"></div>
+                        <div class="circuit-corner circuit-corner--tr"></div>
+                        <div class="circuit-corner circuit-corner--bl"></div>
+                        <div class="circuit-corner circuit-corner--br"></div>
+                        
+                        <!-- 左側科技裝飾 -->
+                        <div class="poster-inner-deco poster-inner-deco--left">
+                            <div class="inner-grid"></div>
+                            <div class="inner-scan-bar"></div>
+                            <div class="inner-hex inner-hex--1"></div>
+                            <div class="inner-hex inner-hex--2"></div>
+                            <div class="inner-hex inner-hex--3"></div>
+                            <div class="inner-data-bar inner-data-bar--1">
+                                <span class="inner-data-fill"></span>
+                            </div>
+                            <div class="inner-data-bar inner-data-bar--2">
+                                <span class="inner-data-fill"></span>
+                            </div>
+                            <div class="inner-data-bar inner-data-bar--3">
+                                <span class="inner-data-fill"></span>
+                            </div>
+                            <div class="inner-circuit"></div>
+                            <div class="inner-text">SYS</div>
+                            <div class="inner-text">AI</div>
+                            <div class="inner-text">OK</div>
+                        </div>
+                        
+                        <!-- 右側科技裝飾 -->
+                        <div class="poster-inner-deco poster-inner-deco--right">
+                            <div class="inner-grid"></div>
+                            <div class="inner-scan-bar"></div>
+                            <div class="inner-hex inner-hex--1"></div>
+                            <div class="inner-hex inner-hex--2"></div>
+                            <div class="inner-hex inner-hex--3"></div>
+                            <div class="inner-data-bar inner-data-bar--1">
+                                <span class="inner-data-fill"></span>
+                            </div>
+                            <div class="inner-data-bar inner-data-bar--2">
+                                <span class="inner-data-fill"></span>
+                            </div>
+                            <div class="inner-data-bar inner-data-bar--3">
+                                <span class="inner-data-fill"></span>
+                            </div>
+                            <div class="inner-circuit"></div>
+                            <div class="inner-text">NET</div>
+                            <div class="inner-text">CPU</div>
+                            <div class="inner-text">OK</div>
+                        </div>
+                        
                         <!-- Image Display (Primary) -->
-                        <div id="poster-image-container" class="text-center">
+                        <div id="poster-image-container">
                             <img 
                                 id="poster-image"
                                 src="" 

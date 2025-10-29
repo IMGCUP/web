@@ -206,6 +206,9 @@ async function init() {
         // Initialize page-specific features
         initPageFeatures();
         
+        // Initialize side decoration triggers
+        initSideDecoTriggers();
+        
         // Load effects if enabled
         if (!noEffects) {
             await loadEffects();
@@ -549,6 +552,64 @@ async function loadEffects() {
     }
     
     await Promise.all(promises);
+}
+
+/**
+ * Initialize side decoration triggers
+ * 監聽指定區域的 reveal 元素，與卡片出現時機同步
+ */
+function initSideDecoTriggers() {
+    const delayedDecos = document.querySelectorAll('.side-deco--delayed');
+    
+    if (delayedDecos.length === 0) return;
+    
+    // 為每個延遲顯示的裝飾設置觀察器
+    delayedDecos.forEach(deco => {
+        const triggerSelector = deco.getAttribute('data-trigger');
+        if (!triggerSelector) return;
+        
+        const triggerSection = document.getElementById(triggerSelector);
+        if (!triggerSection) return;
+        
+        // 找到該區域內的第一個 reveal 元素（通常是卡片）
+        const firstRevealElement = triggerSection.querySelector('.reveal');
+        if (!firstRevealElement) return;
+        
+        // 檢查元素是否已經在視窗內
+        const rect = firstRevealElement.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInView) {
+            // 如果元素已經在視窗內，延遲一小段時間再觸發動畫
+            // 確保 DOM 已經準備好且動畫可以正常播放
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    deco.classList.add('is-visible');
+                }, 50);
+            });
+        } else {
+            // 如果元素不在視窗內，使用 Intersection Observer 監聽
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // 當第一個卡片開始 reveal 時，同時顯示側邊裝飾
+                        deco.classList.add('is-visible');
+                        // 只觸發一次
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // 使用與 scroll-reveal 相同的設定
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            // 觀察第一個 reveal 元素
+            observer.observe(firstRevealElement);
+        }
+    });
+    
+    console.log('✨ 側邊裝飾觸發器已初始化（與 reveal 同步）');
 }
 
 /**
