@@ -4,14 +4,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     # 修改為實際的子目錄名稱
-    RewriteBase /aicustom/
+    RewriteBase /aicustom/web/網頁內容/
     
     # 如果請求的是真實存在的檔案或目錄，直接訪問
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     
     # 否則導向 index.html（用於前端路由）
-    RewriteRule . /aicustom/index.html [L]
+    RewriteRule . /aicustom/web/網頁內容/index.html [L]
 </IfModule>
 
 # 啟用 gzip 壓縮以提升效能
@@ -89,5 +89,5 @@
 Options -Indexes
 
 # 自訂錯誤頁面（可選）
-# ErrorDocument 404 /aicustom/index.html
-# ErrorDocument 500 /aicustom/index.html
+# ErrorDocument 404 /aicustom/web/網頁內容/index.html
+# ErrorDocument 500 /aicustom/web/網頁內容/index.html
