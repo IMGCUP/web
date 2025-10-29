@@ -25,10 +25,10 @@
     "breathingBorder": true
   },
   "navigation": [
-    { "label": "首頁", "href": "/index.html" },
-    { "label": "投影片", "href": "/slides.html" },
-    { "label": "影片", "href": "/videos.html" },
-    { "label": "海報", "href": "/poster.html" },
-    { "label": "介紹", "href": "/intro.html" }
+    { "label": "首頁", "href": "./index.html" },
+    { "label": "投影片", "href": "./slides.html" },
+    { "label": "影片", "href": "./videos.html" },
+    { "label": "海報", "href": "./poster.html" },
+    { "label": "介紹", "href": "./intro.html" }
   ]
 }
