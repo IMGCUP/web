@@ -1,17 +1,17 @@
 {
   "project": {
-    "title": "AI 客服專題",
-    "tagline": "以 AI 強化客服體驗與效率",
+    "title": "AI康斯特",
+    "tagline": "AI對於企業窗口之應用與實作",
     "demoUrl": {
       "frontend": "https://demo-frontend.example.com",
       "backend": "https://demo-backend.example.com"
     }
   },
   "assets": {
-    "slidesPdf": "/assets/slides/sample.pdf",
-    "introPdf": "/assets/intro/intro.pdf",
-    "posterImage": "/assets/poster/poster.png",
-    "posterPdf": "/assets/poster/poster.pdf"
+    "slidesPdf": "./assets/slides/sample.pdf",
+    "introPdf": "./assets/intro/intro.pdf",
+    "posterImage": "./assets/poster/poster.png",
+    "posterPdf": "./assets/poster/poster.pdf"
   },
   "videos": [
     { "title": "專題總覽 Demo", "youtubeId": "dQw4w9WgXcQ" },

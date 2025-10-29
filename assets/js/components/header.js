@@ -30,7 +30,7 @@ export class HeaderComponent extends HTMLElement {
             
         } catch (error) {
             console.error('Header loading error:', error);
-            this.innerHTML = '<div class="nav container"><a href="/" class="nav__brand">AI 客服專題</a></div>';
+            this.innerHTML = '<div class="nav container"><a href="/" class="nav__brand">AI康斯特</a></div>';
         }
     }
     

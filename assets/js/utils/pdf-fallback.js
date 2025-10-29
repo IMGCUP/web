@@ -130,7 +130,7 @@ export function createPDFViewer(container, pdfUrl, options = {}) {
 async function initPDFJS(container, pdfUrl, options) {
     try {
         // Set worker source
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/js/vendor/pdfjs/pdf.worker.min.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/js/vendor/pdfjs/pdf.worker.min.js';
         
         // Load PDF document
         const loadingTask = pdfjsLib.getDocument(pdfUrl);

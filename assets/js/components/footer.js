@@ -30,7 +30,7 @@ export class FooterComponent extends HTMLElement {
             this.innerHTML = `
                 <div class="container">
                     <div class="text-center">
-                        <p class="text-dim">&copy; ${new Date().getFullYear()} AI 客服專題</p>
+                        <p class="text-dim">&copy; ${new Date().getFullYear()} AI康斯特</p>
                     </div>
                 </div>
             `;

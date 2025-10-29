@@ -214,7 +214,7 @@ async function init() {
         // Update demo links
         await updateDemoLinks();
         
-        console.log('🚀 AI 客服專題網站已成功初始化');
+        console.log('🚀 AI康斯特網站已成功初始化');
         
         // 初始化完成，通知 preloader 可以隱藏
         // preloader 會自動處理最小顯示時間

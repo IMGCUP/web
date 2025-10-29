@@ -31,10 +31,10 @@
     "demoUrl": "https://example.com/demo" // 測試連結：AI 客服系統入口
   },
   "assets": {
-    "slidesPdf": "/assets/slides/sample.pdf",  // 測試：投影片 PDF
-    "introPdf": "/assets/intro/intro.pdf",     // 測試：介紹 PDF
-    "posterImage": "/assets/poster/poster.png",// 測試：海報 PNG（若有 PDF 亦可）
-    "posterPdf": "/assets/poster/poster.pdf"   // 測試：海報 PDF（可選）
+    "slidesPdf": "./assets/slides/sample.pdf",  // 測試：投影片 PDF
+    "introPdf": "./assets/intro/intro.pdf",     // 測試：介紹 PDF
+    "posterImage": "./assets/poster/poster.png",// 測試：海報 PNG（若有 PDF 亦可）
+    "posterPdf": "./assets/poster/poster.pdf"   // 測試：海報 PDF（可選）
   },
   "videos": [
     { "title": "總覽 Demo", "youtubeId": "dQw4w9WgXcQ" } // 測試：YouTube 影片 ID

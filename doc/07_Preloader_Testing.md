@@ -152,7 +152,7 @@ sessionOnce: true  // 改為 true
 #### 8.2 圖片預載入（data-preload）
 若需測試圖片等待功能，在 HTML 加入：
 ```html
-<img src="/assets/images/test.jpg" data-preload alt="Test">
+<img src="./assets/images/test.jpg" data-preload alt="Test">
 ```
 - [ ] 確認 preloader 等待圖片載入完成
 - [ ] 確認不超過逾時時間（800ms per image）

@@ -23,8 +23,8 @@ export async function loadSiteData() {
 function getDefaultSiteData() {
     return {
         project: {
-            title: 'AI 客服專題',
-            tagline: '以 AI 強化客服體驗與效率',
+            title: 'AI康斯特',
+            tagline: 'AI對於企業窗口之應用與實作',
             demoUrl: '#'
         },
         assets: {},

@@ -131,15 +131,15 @@
 ```json
 {
   "project": {
-    "title": "AI 客服專題",
+    "title": "AI康斯特",
     "tagline": "以 AI 強化客服體驗與效率",
     "demoUrl": "https://example.com/ai-support"
   },
   "assets": {
-    "slidesPdf": "/assets/slides/final.pdf",
-    "introPdf": "/assets/intro/intro.pdf",
-    "poster": "/assets/poster/poster.png",
-    "posterPdf": "/assets/poster/poster.pdf"
+    "slidesPdf": "./assets/slides/final.pdf",
+    "introPdf": "./assets/intro/intro.pdf",
+    "poster": "./assets/poster/poster.png",
+    "posterPdf": "./assets/poster/poster.pdf"
   },
   "videos": [
     { "title": "總覽 Demo", "youtubeId": "XXXXXXXXXXX" }
