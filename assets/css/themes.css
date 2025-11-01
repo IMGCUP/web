@@ -1919,7 +1919,7 @@ body:has(.poster-frame) .breathing-border::after {
 
 /* Poster Image */
 .poster-image {
-  max-width: 100%;
+  max-width: 65%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -1939,6 +1939,7 @@ body:has(.poster-frame) .breathing-border::after {
   }
   
   .poster-image {
+    max-width: 100%;
     border-radius: 2px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
   }
