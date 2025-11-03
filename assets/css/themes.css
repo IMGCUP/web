@@ -973,7 +973,7 @@ html.is-preloading body {
   background: rgba(11, 15, 20, 0.8);
   border: 2px solid rgba(0, 229, 255, 0.3);
   border-radius: 8px;
-  padding: var(--sp-md);
+  padding: var(--sp-xl);
   box-shadow: 
     0 0 30px rgba(0, 229, 255, 0.15),
     inset 0 0 30px rgba(0, 229, 255, 0.05);
@@ -1006,7 +1006,7 @@ html.is-preloading body {
   height: 3px;
   background: linear-gradient(90deg, 
     transparent,
-    var(--c-accent) 50%,
+    var(--c-primary) 50%,
     transparent
   );
   opacity: 0.5;
@@ -1028,14 +1028,7 @@ html.is-preloading body {
 }
 
 .video-single-container .video-card__title {
-  padding: var(--sp-lg);
-  font-size: 1.25rem;
-  text-align: center;
-  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 500;
+  display: none;
 }
 
 /* Responsive adjustments for single video container */
@@ -1045,13 +1038,8 @@ html.is-preloading body {
   }
   
   .video-single-container .video-card {
-    padding: var(--sp-sm);
-    border-width: 1px;
-  }
-  
-  .video-single-container .video-card__title {
-    font-size: 1rem;
     padding: var(--sp-md);
+    border-width: 1px;
   }
 }
 
