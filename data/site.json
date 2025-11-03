@@ -14,9 +14,7 @@
     "posterPdf": "/web-reverse/assets/poster/poster.pdf"
   },
   "videos": [
-    { "title": "專題總覽 Demo", "youtubeId": "dQw4w9WgXcQ" },
-    { "title": "系統架構介紹", "youtubeId": "ScMzIvxBSi4" },
-    { "title": "使用案例展示", "youtubeId": "9bZkp7q19f0" }
+    { "title": "專題影片展示", "youtubeId": "4R9h7Kx9l9o" }
   ],
   "effects": {
     "particles": true,
